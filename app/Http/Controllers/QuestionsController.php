@@ -16,7 +16,6 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::with('user')->latest()->simplePaginate(5);
-        dd($questions);
         return view('questions.index', compact('questions'))->render();
     }
 
