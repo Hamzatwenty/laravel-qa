@@ -16,8 +16,19 @@ class Question extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
+    // Mutator
     public function setTitleAttribute($value){
         $this->attributes['title'] =  $value;
         $this->attributes['slug'] = Str::slug($value);
+    }
+
+    // Accessor
+    public function getUrlAttribute(){
+        return route('questions.show', $this->id);
+    }
+
+    // Accessor
+    public function getCreatedDateAttribute(){
+        return $this->created_at->diffForHumans();
     }
 }
