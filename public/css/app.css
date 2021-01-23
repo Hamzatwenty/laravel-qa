@@ -9971,3 +9971,18 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.status.unanswered {
+  border: none;
+}
+.status.answered {
+  border: 1px solid #5fbb7e;
+  color: #5fbb7e;
+}
+.status.answered-accepted {
+  background: #5fbb7e;
+  color: #fff;
+}
+
+.view {
+  margin-top: 10px;
+}
