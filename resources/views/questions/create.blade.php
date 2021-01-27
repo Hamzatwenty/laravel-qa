@@ -37,21 +37,17 @@
                             @csrf
                             <div class="form-group">
                                 <label for="question-title">Question Title</label>
-                                <input type="text" name="title" id="question-title" class="form-control {{ $errors->has('title') ? 'in-invalid' : '' }}">
-                                @if ($errors->has('title'))
-                                    <div class="invalid-feedback">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </div>
-                                @endif
+                                <input type="text" name="title" id="question-title" value="{{ old('title') }}" class="form-control">
+                                @error('title')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="question-body">Explain your question</label>
-                                <textarea name="body" id="question-body" cols="30" rows="10" class="form-control {{ $errors->has('body') ? 'in-invalid' : '' }}"></textarea>
-                                @if ($errors->has('body'))
-                                <div class="invalid-feedback">
-                                    <strong>{{ $errors->first('body') }}</strong>
-                                </div>
-                            @endif
+                                <textarea name="body" id="question-body" cols="30" rows="10" class="form-control">{{ old('body') }}</textarea>
+                                @error('body')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-outline-info btn-lg">Ask this question</button>
