@@ -9,6 +9,13 @@ class Answer extends Model
 {
     use HasFactory;
 
+    public static function boot(){
+        parent::boot();
+        static::created(function($answer){
+            $answer->question->increment('answers_count');
+        });
+    }
+
     public function question(){
         return $this->belongsTo(Question::class);
     }

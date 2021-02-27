@@ -36,6 +36,7 @@ class Question extends Model
         return $this->created_at->diffForHumans();
     }
 
+    // Accessor
     public function getStatusAttribute()
     {
         if ($this->answers_count > 0) {
@@ -47,6 +48,7 @@ class Question extends Model
         return "unanswered";
     }
 
+    // Accessor
     public function getBodyHtmlAttribute(){
         return \Parsedown::instance()->text($this->body);
     }
