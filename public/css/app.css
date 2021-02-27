@@ -9990,3 +9990,7 @@ h3 {
 .form-delete {
   display: inline;
 }
+
+.question-show-hr {
+  border: 1px solid green;
+}

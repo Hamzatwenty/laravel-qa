@@ -59,6 +59,8 @@ class QuestionsController extends Controller
     public function show(Question $question)
     {
         $question->increment('views');
+        // //$question->load('answers.user'); we actually this did eager loading in route service provider file
+        //  where we are binding question slug route for single question showing
         return view('questions.show',compact('question'));
     }
 
