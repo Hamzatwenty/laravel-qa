@@ -23,25 +23,42 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center">
-                            <h1>{{ $question->title }}</h1>
-                            <div class="ml-auto">
-                                <a href="{{ route('questions.index') }}" class="btn btn-outline-primary">Back to all questions</a>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="d-flex align-items-center">
+                                <h1>{{ $question->title }}</h1>
+                                <div class="ml-auto">
+                                    <a href="{{ route('questions.index') }}" class="btn btn-outline-primary">Back to all questions</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="card-body">
-                        {!! $question->body_html !!}
-                        <div class="float-right">
-                            <span class="text-muted">Answered {{ $question->created_date }}</span>
-                            <div class="media mt-2">
-                                <a href="{{ $question->user->url }}" class="pr-2">
-                                    <img src="{{ $question->user->avatar }}" alt="">
+                        <hr>
+                        <div class="media">
+                            <div class="d-flex flex-column vote-controls">
+                                <a href="javascript:void(0);" title="This is question is useful" class="vote-up">
+                                    <i class="fa fa-caret-up"></i>
                                 </a>
-                                <div class="media-body mt-1">
-                                    <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                <span class="votes-count">123</span>
+                                <a href="javascript:void(0);" title="This question is not useful" class="vote-down off">
+                                    Vote Down
+                                </a>
+                                <a href="javascript:void(0);" title="Click to mark as favorite question (Click again to undo)" class="favorite">
+                                    Favorite
+                                </a>
+                                <span class="favorites-count">123</span>
+                            </div>
+                            <div class="media-body">
+                                {!! $question->body_html !!}
+                                <div class="float-right">
+                                    <span class="text-muted">Answered {{ $question->created_date }}</span>
+                                    <div class="media mt-2">
+                                        <a href="{{ $question->user->url }}" class="pr-2">
+                                            <img src="{{ $question->user->avatar }}" alt="">
+                                        </a>
+                                        <div class="media-body mt-1">
+                                            <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
