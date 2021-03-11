@@ -34,19 +34,21 @@
                         </div>
                         <hr>
                         <div class="media">
+                            {{--Vote Control System--}}
                             <div class="d-flex flex-column vote-controls">
-                                <a href="javascript:void(0);" title="This is question is useful" class="vote-up">
-                                    <i class="fa fa-caret-up"></i>
+                                <a href="javascript:void(0);" title="This question is useful" class="vote-up">
+                                    <i class="fas fa-caret-up fa-3x"></i>
                                 </a>
                                 <span class="votes-count">123</span>
                                 <a href="javascript:void(0);" title="This question is not useful" class="vote-down off">
-                                    Vote Down
+                                    <i class="fas fa-caret-down fa-3x"></i>
                                 </a>
-                                <a href="javascript:void(0);" title="Click to mark as favorite question (Click again to undo)" class="favorite">
-                                    Favorite
+                                <a href="javascript:void(0);" title="Click to mark as favorite question (Click again to undo)" class="favorite mt-2 favorited">
+                                    <i class="fas fa-star fa-2x"></i>
                                 </a>
                                 <span class="favorites-count">123</span>
                             </div>
+                            {{--End Vote Control System--}}
                             <div class="media-body">
                                 {!! $question->body_html !!}
                                 <div class="float-right">
@@ -67,7 +69,6 @@
             </div>
         </div>
 
-
         <div class="row mt-4">
             <div class="col-md-12">
                 <div class="card">
@@ -78,6 +79,21 @@
                         <hr>
                         @foreach ($question->answers as $answer)
                         <div class="media">
+                            {{--Vote Control System--}}
+                            <div class="d-flex flex-column vote-controls">
+                                <a href="javascript:void(0);" title="This answer is useful" class="vote-up">
+                                    <i class="fas fa-caret-up fa-3x"></i>
+                                </a>
+                                <span class="votes-count">123</span>
+                                <a href="javascript:void(0);" title="This answer is not useful" class="vote-down off">
+                                    <i class="fas fa-caret-down fa-3x"></i>
+                                </a>
+                                <a href="javascript:void(0);" title="Mark this answer as best answer" class="vote-accepted mt-2x">
+                                    <i class="fas fa-check fa-2x"></i>
+                                </a>
+                            </div>
+                            {{--End Vote Control System--}}
+
                             <div class="media-body">
                                 {!! $answer->body_html !!}
                                 <div class="float-right">

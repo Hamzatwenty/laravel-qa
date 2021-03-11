@@ -34,3 +34,42 @@
 .question-show-hr{
     border: 1px solid green;
 }
+//Vote Control System CSS
+.vote-controls {
+  min-width: 60px;
+  margin-right: 30px;
+  text-align: center;
+
+  span, a {
+    color: $gray-700;
+    display: block;
+  }
+
+  span {
+    &.votes-count {
+      font-size: 25px;
+    }
+    &.favorites-count {
+      font-size: 12px;
+    }
+  }
+
+  a {
+    cursor: pointer;
+    color: $gray-600;
+
+    &.off, &.off:hover {
+      color: $gray-500;
+    }
+
+    &.favorite {
+      &.favorited, &.favorited:hover {
+        color: $warning;
+      }
+    }
+
+    &.vote-accepted {
+      color: $green;
+    }
+  }
+}// End Vote Control System CSS
