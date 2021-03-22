@@ -36,3 +36,6 @@ yarn-error.log
 .idea/php.xml
 .idea/QA.iml
 .idea/workspace.xml
+*.json
+.idea/workspace.xml
+*.xml
