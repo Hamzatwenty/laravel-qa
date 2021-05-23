@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Question\AskQuestionRequest;
 use App\Models\Question;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class QuestionsController extends Controller
 {

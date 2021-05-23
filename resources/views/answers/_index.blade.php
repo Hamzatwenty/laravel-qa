@@ -20,9 +20,25 @@
                             <a href="javascript:void(0);" title="This answer is not useful" class="vote-down off">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-                            <a href="javascript:void(0);" title="Mark this answer as best answer" class="{{ $answer->status }} mt-2x">
+                            @can('accept',$answer)
+                            <a href="javascript:void(0);" title="Mark this answer as best answer"
+                                class="{{ $answer->status }} mt-2x"
+                                onclick="event.preventDefault(); document.getElementById('accept-answer-{{$answer->id}}').submit();"
+                            >
                                 <i class="fas fa-check fa-2x"></i>
                             </a>
+                            <form style="display: none;" action="{{route('answers.accept',$answer->id)}}" method="post" id="accept-answer-{{ $answer->id }}">
+                                @csrf
+                            </form>
+                            @else
+                                @if($answer->is_best)
+                                    <a href="javascript:void(0);" title="The question owner accepted this answer as best answer"
+                                       class="{{ $answer->status }} mt-2x"
+                                    >
+                                        <i class="fas fa-check fa-2x"></i>
+                                    </a>
+                                    @endif
+                            @endcan
                         </div>
                         {{--End Vote Control System--}}
 
