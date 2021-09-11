@@ -37,13 +37,25 @@
                         <div class="media">
                             {{--Vote Control System--}}
                             <div class="d-flex flex-column vote-controls">
-                                <a href="javascript:void(0);" title="This question is useful" class="vote-up">
+                                <a href="javascript:void(0);" title="This question is useful" class="vote-up {{ \Illuminate\Support\Facades\Auth::guest() ? 'off' : '' }}"
+                                   onclick="event.preventDefault(); document.getElementById('up-vote-question-{{$question->id}}').submit();"
+                                >
                                     <i class="fas fa-caret-up fa-3x"></i>
                                 </a>
-                                <span class="votes-count">123</span>
-                                <a href="javascript:void(0);" title="This question is not useful" class="vote-down off">
+                                <form style="display: none;" action="{{url('/question/'.$question->id.'/vote')}}" method="post" id="up-vote-question-{{ $question->id }}">
+                                    @csrf
+                                    <input type="hidden" name="vote" value="1">
+                                </form>
+                                <span class="votes-count">{{$question->votes_count}}</span>
+                                <a href="javascript:void(0);" title="This question is not useful" class="vote-down {{ \Illuminate\Support\Facades\Auth::guest() ? 'off' : '' }}"
+                                   onclick="event.preventDefault(); document.getElementById('down-vote-question-{{$question->id}}').submit();"
+                                >
                                     <i class="fas fa-caret-down fa-3x"></i>
                                 </a>
+                                <form style="display: none;" action="{{url('/question/'.$question->id.'/vote')}}" method="post" id="down-vote-question-{{ $question->id }}">
+                                    @csrf
+                                    <input type="hidden" name="vote" value="-1">
+                                </form>
                                 <a href="javascript:void(0);"
                                    title="Click to mark as favorite question (Click again to undo)"
                                    class="favorite mt-2 {{ \Illuminate\Support\Facades\Auth::guest() ? 'off' : ($question->is_favorited) ? 'favorited' : '' }}"

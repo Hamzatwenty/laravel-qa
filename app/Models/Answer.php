@@ -33,6 +33,9 @@ class Answer extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function votes(){
+        return $this->morphToMany(User::class,'votable');
+    }
 
     public function getBodyHtmlAttribute(){
         return \Parsedown::instance()->text($this->body);
@@ -52,5 +55,11 @@ class Answer extends Model
 
     public function isBest(){
         return $this->id === $this->question->best_answer_id;
+    }
+    public function upVotes(){
+        return $this->votes()->wherePivot('vote',1);
+    }
+    public function downVotes(){
+        return $this->votes()->wherePivot('vote',-1);
     }
 }

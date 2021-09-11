@@ -13,13 +13,25 @@
                     <div class="media">
                         {{--Vote Control System--}}
                         <div class="d-flex flex-column vote-controls">
-                            <a href="javascript:void(0);" title="This answer is useful" class="vote-up">
+                            <a href="javascript:void(0);" title="This answer is useful" class="vote-up {{ \Illuminate\Support\Facades\Auth::guest() ? 'off' : '' }}"
+                               onclick="event.preventDefault(); document.getElementById('up-vote-answer-{{$answer->id}}').submit();"
+                            >
                                 <i class="fas fa-caret-up fa-3x"></i>
                             </a>
-                            <span class="votes-count">123</span>
-                            <a href="javascript:void(0);" title="This answer is not useful" class="vote-down off">
+                            <form style="display: none;" action="{{url('/answer/'.$answer->id.'/vote')}}" method="post" id="up-vote-answer-{{ $answer->id }}">
+                                @csrf
+                                <input type="hidden" name="vote" value="1">
+                            </form>
+                            <span class="votes-count">{{$answer->votes_count}}</span>
+                            <a href="javascript:void(0);" title="This answer is not useful" class="vote-down {{ \Illuminate\Support\Facades\Auth::guest() ? 'off' : '' }}"
+                               onclick="event.preventDefault(); document.getElementById('down-vote-answer-{{$answer->id}}').submit();"
+                            >
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
+                            <form style="display: none;" action="{{url('/answer/'.$answer->id.'/vote')}}" method="post" id="down-vote-answer-{{ $answer->id }}">
+                                @csrf
+                                <input type="hidden" name="vote" value="-1">
+                            </form>
                             @can('accept',$answer)
                             <a href="javascript:void(0);" title="Mark this answer as best answer"
                                 class="{{ $answer->status }} mt-2x"
